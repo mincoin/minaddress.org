@@ -3,28 +3,9 @@
     <head>
         <title>MinCoin Wallet</title>
         <meta charset="utf-8">
-
         <link rel="stylesheet" type="text/css" href="styles/reset.css?__inline=true" />
         <link rel="stylesheet" type="text/css" href="styles/main.css?__inline=true" />
         <script src="scripts/jquery.min.js?__inline=true"></script>
-        <script>
-            $(function() {
-                $("body").on("click", function()
-                {
-                    SecureRandom.seedTime();
-                }).on("keypress", function()
-                {
-                    SecureRandom.seedTime();
-                }).on("mousemove", function(e)
-                {
-                    ninja.seeder.seed(e);
-                });
-                $("nav li").on("click", function()
-                {
-                    ninja.tabSwitch(this);
-                });
-            });
-        </script>
     </head>
     <body>
         <div id="busyblock"></div>
@@ -68,7 +49,6 @@
                                     type="button"
                                     id="newaddress"
                                     value="Generate New Address"
-                                    onclick="ninja.wallets.singlewallet.generateNewAddressAndKey();"
                                 />
                             </span>
                             <span class="print">
@@ -77,7 +57,7 @@
                                     name="print"
                                     value="Print"
                                     id="singleprint"
-                                    onclick="window.print();"
+                                    class="button-print"
                                 />
                             </span>
                         </div>
@@ -94,7 +74,6 @@
                             <div class="pubaddress">
                                 <span class="output" id="btcaddress"></span>
                             </div>
-    
                         </div>
                         <div class="private">
                             <div class="privwif">
@@ -122,7 +101,6 @@
                                 <input
                                     type="checkbox"
                                     id="paperart"
-                                    onchange="ninja.wallets.paperwallet.toggleArt(this);"
                                 />
                             </span>
                             <span>
@@ -136,7 +114,6 @@
                                     type="button"
                                     id="papergenerate"
                                     value="Generate"
-                                    onclick="ninja.wallets.paperwallet.build(document.getElementById('paperlimit').value * 1, document.getElementById('paperlimitperpage').value * 1, !document.getElementById('paperart').checked, document.getElementById('paperpassphrase').value);"
                                 />
                             </span>
                             <span class="print">
@@ -145,7 +122,7 @@
                                     name="print"
                                     value="Print"
                                     id="paperprint"
-                                    onclick="window.print();"
+                                    class="button-print"
                                 />
                             </span>
                         </div>
@@ -157,7 +134,6 @@
                                 <input
                                     type="checkbox"
                                     id="paperencrypt"
-                                    onchange="ninja.wallets.paperwallet.toggleEncrypt(this);"
                                 />
                             </span>
                             <span>
@@ -184,26 +160,36 @@
                                 <label id="bulklabelstartindex">
                                     Start index:
                                 </label>
-                                <input type="text" id="bulkstartindex" value="1" />
+                                <input
+                                    type="text"
+                                    id="bulkstartindex"
+                                    value="1"
+                                />
                             </span>
                             <span>
                                 <label id="bulklabelrowstogenerate">
                                     Rows to generate:
                                 </label>
-                                <input type="text" id="bulklimit" value="3" />
+                                <input
+                                    type="text"
+                                    id="bulklimit"
+                                    value="3"
+                                />
                             </span>
                             <span>
                                 <label id="bulklabelcompressed">
                                     Compressed addresses?
                                 </label>
-                                <input type="checkbox" id="bulkcompressed" />
+                                <input
+                                    type="checkbox"
+                                    id="bulkcompressed"
+                                />
                             </span>
                             <span>
                                 <input
                                     type="button"
                                     id="bulkgenerate"
                                     value="Generate"
-                                    onclick="ninja.wallets.bulkwallet.buildCSV(document.getElementById('bulklimit').value * 1, document.getElementById('bulkstartindex').value * 1, document.getElementById('bulkcompressed').checked);"
                                 />
                             </span>
                             <span class="print">
@@ -212,7 +198,7 @@
                                     name="print"
                                     id="bulkprint"
                                     value="Print"
-                                    onclick="window.print();"
+                                    class="button-print"
                                 />
                             </span>
                         </div>
@@ -238,7 +224,6 @@
                                 type="text"
                                 id="detailprivkey"
                                 value=""
-                                onfocus="this.select();" onkeypress="if (event.keyCode == 13) ninja.wallets.detailwallet.viewDetails();"
                             />
                         </span>
                         <span>
@@ -246,7 +231,6 @@
                                 type="button"
                                 id="detailview"
                                 value="View Details"
-                                onclick="ninja.wallets.detailwallet.viewDetails();"
                             />
                         </span>
                         <span class="print">
@@ -255,7 +239,7 @@
                                 name="print"
                                 id="detailprint"
                                 value="Print"
-                                onclick="window.print();"
+                                class="button-print"
                             />
                         </span>
                         <div id="detailbip38commands">
@@ -266,8 +250,7 @@
                                 <input
                                     type="text"
                                     id="detailprivkeypassphrase"
-                                    value="" onfocus="this.select();"
-                                    onkeypress="if (event.keyCode == 13) ninja.wallets.detailwallet.viewDetails();"
+                                    value=""
                                 />
                             </span>
                             <span>
@@ -275,7 +258,6 @@
                                     type="button"
                                     id="detaildecrypt"
                                     value="Decrypt BIP38"
-                                    onclick="ninja.wallets.detailwallet.viewDetails();"
                                 />
                             </span>
                         </div>
@@ -330,16 +312,19 @@
                             <div class="item">
                                 <span class="label">
                                     <span id="detaillabelprivwif">
-                                        Private Key WIF<br />51 characters base58, starts with a
+                                        Private Key WIF<br />
+                                        51 characters base58, starts with a
                                     </span> <span id="detailwifprefix">'6'</span>
                                 </span>
                                 <div id="detailqrcodeprivate" class="qrcode_private"></div>
                                 <span class="output" id="detailprivwif"></span>
                             </div>
                             <div class="item right">
-                                <span class="label"><span id="detaillabelprivwifcomp">
-                                    Private Key WIF Compressed<br />52 characters base58, starts with a</span>
-                                    <span id="detailcompwifprefix">'T'</span>
+                                <span class="label">
+                                    <span id="detaillabelprivwifcomp">
+                                        Private Key WIF Compressed<br />
+                                        52 characters base58, starts with a
+                                    </span> <span id="detailcompwifprefix">'T'</span>
                                 </span>
                                 <div id="detailqrcodeprivatecomp" class="qrcode_private"></div>
                                 <span class="output" id="detailprivwifcomp"></span>
@@ -451,7 +436,84 @@
         <script src="scripts/ninja.bulkwallet.js?__inline=true"></script>
         <script src="scripts/ninja.detailwallet.js?__inline=true"></script>
         <script src="scripts/ninja.instructions.js?__inline=true"></script>
-        <script src="scripts/ninja.unittests.js?__inline=true"></script>
-        <script src="scripts/ninja.onload.js?__inline=true"></script>
+        <script>
+            $(function() {
+                $("body").on("click", function()
+                {
+                    SecureRandom.seedTime();
+                }).on("keypress", function()
+                {
+                    SecureRandom.seedTime();
+                }).on("mousemove", function(e)
+                {
+                    ninja.seeder.seed(e);
+                });
+                $("nav li").on("click", function()
+                {
+                    ninja.tabSwitch(this);
+                });
+                $("#newaddress").on("click", function()
+                {
+                    ninja.wallets.singlewallet.generateNewAddressAndKey();
+                });
+                $("#paperart").on("change", function()
+                {
+                    ninja.wallets.paperwallet.toggleArt(this);
+                });
+                $("#papergenerate").on("click", function()
+                {
+                    ninja.wallets.paperwallet.build(
+                        document.getElementById('paperlimit').value * 1,
+                        document.getElementById('paperlimitperpage').value * 1,
+                        !document.getElementById('paperart').checked,
+                        document.getElementById('paperpassphrase').value
+                    );
+                });
+                $("#paperencrypt").on("change", function()
+                {
+                    ninja.wallets.paperwallet.toggleEncrypt(this);
+                });
+                $("#bulkgenerate").on("click", function()
+                {
+                    ninja.wallets.bulkwallet.buildCSV(
+                        document.getElementById('bulklimit').value * 1,
+                        document.getElementById('bulkstartindex').value * 1,
+                        document.getElementById('bulkcompressed').checked
+                    );
+                });
+                $("#detailprivkey").on("focus", function()
+                {
+                    this.select();
+                }).on("keypress", function(e)
+                {
+                    if (e.keyCode == 13) {
+                        ninja.wallets.detailwallet.viewDetails();
+                    }
+                });
+                $("#detailview").on("click", function()
+                {
+                    ninja.wallets.detailwallet.viewDetails();
+                });
+                $("#detailprivkeypassphrase").on("keypress", function(e)
+                {
+                    if (e.keyCode == 13) {
+                        ninja.wallets.detailwallet.viewDetails();
+                    }
+                }).on("focus", function()
+                {
+                    this.select();
+                });
+                $("#detaildecrypt").on("click", function()
+                {
+                    ninja.wallets.detailwallet.viewDetails();
+                });
+                $(".button-print").on("click", function()
+                {
+                    window.print();
+                });
+
+                setTimeout(ninja.seeder.forceGenerate, ninja.seeder.seedLimit * 20);
+            });
+        </script>
     </body>
 </html>
