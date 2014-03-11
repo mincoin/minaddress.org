@@ -5,7 +5,11 @@ module.exports = function (grunt) {
 		combine: {
 			single: {
 				input: "./src/bitaddress-ui.html",
+<<<<<<< HEAD
 				output: "./index.html",
+=======
+				output: "./liteaddress.org.html",
+>>>>>>> 7b9e0b41793cdde556a6db57f1e9053ea2c5811c
 				tokens: [
 					{ token: "//array.map.js", file: "./src/array.map.js" },
 					{ token: "//biginteger.js", file: "./src/biginteger.js" },
@@ -32,8 +36,14 @@ module.exports = function (grunt) {
 					{ token: "//ninja.singlewallet.js", file: "./src/ninja.singlewallet.js" },
 					{ token: "//ninja.paperwallet.js", file: "./src/ninja.paperwallet.js" },
 					{ token: "//ninja.bulkwallet.js", file: "./src/ninja.bulkwallet.js" },
+<<<<<<< HEAD
 					{ token: "//ninja.detailwallet.js", file: "./src/ninja.detailwallet.js" },
                     { token: "//ninja.instructions.js", file: "./src/ninja.instructions.js" },
+=======
+					{ token: "//ninja.brainwallet.js", file: "./src/ninja.brainwallet.js" },
+					{ token: "//ninja.vanitywallet.js", file: "./src/ninja.vanitywallet.js" },
+					{ token: "//ninja.detailwallet.js", file: "./src/ninja.detailwallet.js" },
+>>>>>>> 7b9e0b41793cdde556a6db57f1e9053ea2c5811c
 					{ token: "//qrcode.js", file: "./src/qrcode.js" },
 					{ token: "//securerandom.js", file: "./src/securerandom.js" },
 					{ token: "//main.css", file: "./src/main.css" }
