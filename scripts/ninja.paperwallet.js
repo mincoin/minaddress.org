@@ -1,6 +1,6 @@
 ninja.wallets.paperwallet = {
 	open: function () {
-		document.getElementById("main").setAttribute("class", "paper"); // add 'paper' class to main div
+		$("main").attr("class", "paper"); // add 'paper' class to main div
 		var paperArea = document.getElementById("paperarea");
 		paperArea.style.display = "block";
 		var perPageLimitElement = document.getElementById("paperlimitperpage");
@@ -22,7 +22,7 @@ ninja.wallets.paperwallet = {
 
 	close: function () {
 		document.getElementById("paperarea").style.display = "none";
-		document.getElementById("main").setAttribute("class", ""); // remove 'paper' class from main div
+        $("main").attr("class", ""); // remove 'paper' class from main div
 	},
 
 	remaining: null, // use to keep track of how many addresses are left to process when building the paper wallet
