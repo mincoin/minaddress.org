@@ -1,28 +1,30 @@
 {
-  "name": "bitaddress.org",
+  "name": "wallet.mincoin.io",
   "version": "2.6.0",
-  "description": "Open Source JavaScript Client-Side Bitcoin Wallet Generator",
+  "description": "Open Source JavaScript Client-Side MinCoin Wallet Generator",
   "main": "Gruntfile.js",
   "dependencies": {
     "grunt": "~0.4.1",
     "grunt-combine": "~0.8.3"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "grunt-git-describe": "^2.3.2"
+  },
   "scripts": {
     "test": ""
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/pointbiz/bitaddress.org.git"
+    "url": "git://github.com/mincointools/paper-wallet.git"
   },
   "keywords": [
-    "bitcoin address wallet generator"
+    "mincoin address wallet generator"
   ],
-  "author": "pointbiz",
+  "author": "mincointools",
   "license": "MIT",
   "readmeFilename": "README",
-  "gitHead": "d77aaf687fca1f0e28388b0a8de5eb3d89d4fad3",
+  "gitHead": "9ad2aea1fbc4919f6631606ad1ff5256aed64f8a",
   "bugs": {
-    "url": "https://github.com/pointbiz/bitaddress.org/issues"
+    "url": "https://github.com/mincointools/paper-wallet/issues"
   }
 }
