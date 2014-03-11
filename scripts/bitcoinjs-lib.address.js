@@ -20,7 +20,6 @@ Bitcoin.Address.prototype.toString = function () {
 
 	// Version
 	hash.unshift(this.version);
-    console.log(hash);
 	var checksum = Crypto.SHA256(Crypto.SHA256(hash, { asBytes: true }), { asBytes: true });
 	var bytes = hash.concat(checksum.slice(0, 4));
 	return Bitcoin.Base58.encode(bytes);

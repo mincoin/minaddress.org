@@ -16,7 +16,6 @@
 		encode: function (input) {
 			var bi = BigInteger.fromByteArrayUnsigned(input);
 			var chars = [];
-console.log(bi);
 			while (bi.compareTo(B58.base) >= 0) {
 				var mod = bi.mod(B58.base);
 				chars.unshift(B58.alphabet[mod.intValue()]);
