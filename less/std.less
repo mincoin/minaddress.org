@@ -1,0 +1,67 @@
+/**
+ * Monospace font family
+ */
+.font-mono {
+  font-family: "Courier New", Courier, monospace;
+}
+
+/**
+ * Display text vertically
+ */
+.vertical-text {
+  -webkit-transform-origin:top left;
+  -webkit-transform:rotate(-90deg);
+  -moz-transform-origin:top left;
+  -moz-transform:rotate(-90deg);
+  -ms-transform-origin:top left;
+  -ms-transform:rotate(-90deg);
+  -o-transform-origin:top left;
+  -o-transform:rotate(-90deg);
+  transform-origin:top left;
+  transform:rotate(-90deg);
+}
+
+/**
+ * @type Type of box sizing, eg border-gox, content-box
+ */
+.box-sizing(@type: border-box) {
+  -moz-box-sizing       : @type;
+  -webkit-box-sizing    : @type;
+  -o-box-sizing         : @type;
+  -ms-box-sizing        : @type;
+  box-sizing            : @type;
+}
+
+/**
+ * @radius Radius of the border
+ */
+.border-radius(@radius) {
+  -moz-border-radius      : @radius;
+  -webkit-border-radius   : @radius;
+  -o-border-radius        : @radius;
+  -ms-border-radius       : @radius;
+  border-radius           : @radius;
+}
+
+/**
+ * @note lessphp does not work with @arguments (possible bug).
+ * @rest...
+ */
+.box-shadow(@rest...) {
+  -webkit-box-shadow  : @rest;
+  -moz-box-shadow     : @rest;
+  -o-box-shadow       : @rest;
+  -ms-box-shadow      : @rest;
+  box-shadow          : @rest;
+}
+
+/**
+ * @shadow-h    Horizontal shadow position
+ * @shadow-v    Vertical shadow position
+ * @blur        Blur distance
+ * @color       Shadow color
+ * @opacity     Shadow opacity
+ */
+.text-shadow(@shadow-h: 1px, @shadow-v: 1px, @blur: 1px, @color: #000, @opacity: 1.0) {
+  text-shadow: @shadow-h @shadow-v @blur rgba(red(@color), green(@color), blue(@color), @opacity);
+}
