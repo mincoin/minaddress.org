@@ -1,10 +1,10 @@
-ninja.wallets.bulkwallet = {
+mincointools.wallets.bulkwallet = {
 	open: function () {
 		document.getElementById("bulkarea").style.display = "block";
 		// show a default CSV list if the text area is empty
 		if (document.getElementById("bulktextarea").value == "") {
 			// return control of the thread to the browser to render the tab switch UI then build a default CSV list
-			setTimeout(function () { ninja.wallets.bulkwallet.buildCSV(3, 1, false); }, 200);
+			setTimeout(function () { mincointools.wallets.bulkwallet.buildCSV(3, 1, false); }, 200);
 		}
 	},
 
@@ -18,8 +18,8 @@ ninja.wallets.bulkwallet = {
 	// returns:
 	// index,bitcoinAddress,privateKeyWif
 	buildCSV: function (rowLimit, startIndex, compressedAddrs) {
-		var bulkWallet = ninja.wallets.bulkwallet;
-		document.getElementById("bulktextarea").value = ninja.translator.get("bulkgeneratingaddresses") + rowLimit;
+		var bulkWallet = mincointools.wallets.bulkwallet;
+		document.getElementById("bulktextarea").value = mincointools.translator.get("bulkgeneratingaddresses") + rowLimit;
 		bulkWallet.csv = [];
 		bulkWallet.csvRowLimit = rowLimit;
 		bulkWallet.csvRowsRemaining = rowLimit;
@@ -34,7 +34,7 @@ ninja.wallets.bulkwallet = {
 	csvStartIndex: 0,
 
 	batchCSV: function () {
-		var bulkWallet = ninja.wallets.bulkwallet;
+		var bulkWallet = mincointools.wallets.bulkwallet;
 		if (bulkWallet.csvRowsRemaining > 0) {
 			bulkWallet.csvRowsRemaining--;
 			var key = new Bitcoin.ECKey(false);
@@ -47,7 +47,7 @@ ninja.wallets.bulkwallet = {
 			//+ "\",\"" + key.toString("base64") 
 								+ "\"");
 
-			document.getElementById("bulktextarea").value = ninja.translator.get("bulkgeneratingaddresses") + bulkWallet.csvRowsRemaining;
+			document.getElementById("bulktextarea").value = mincointools.translator.get("bulkgeneratingaddresses") + bulkWallet.csvRowsRemaining;
 
 			// release thread to browser to render UI
 			setTimeout(bulkWallet.batchCSV, 0);

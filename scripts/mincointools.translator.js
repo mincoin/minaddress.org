@@ -1,13 +1,13 @@
-ninja.translator = {
+mincointools.translator = {
 	currentCulture: "en",
 
 	translate: function (culture) {
-		var dict = ninja.translator.translations[culture];
+		var dict = mincointools.translator.translations[culture];
 		if (dict) {
 			// set current culture
-			ninja.translator.currentCulture = culture;
+			mincointools.translator.currentCulture = culture;
 			// update menu UI
-			for (var cult in ninja.translator.translations) {
+			for (var cult in mincointools.translator.translations) {
 				document.getElementById("culture" + cult).setAttribute("class", "");
 			}
 			document.getElementById("culture" + culture).setAttribute("class", "selected");
@@ -24,7 +24,7 @@ ninja.translator = {
 	},
 
 	get: function (id) {
-		var translation = ninja.translator.translations[ninja.translator.currentCulture][id];
+		var translation = mincointools.translator.translations[mincointools.translator.currentCulture][id];
 		return translation;
 	},
 
@@ -440,9 +440,9 @@ ninja.translator = {
 	}
 };
 
-ninja.translator.showEnglishJson = function () {
-	var english = ninja.translator.translations["en"];
-	var spanish = ninja.translator.translations["es"];
+mincointools.translator.showEnglishJson = function () {
+	var english = mincointools.translator.translations["en"];
+	var spanish = mincointools.translator.translations["es"];
 	var spanishClone = {};
 	for (var key in spanish) {
 		spanishClone[key] = spanish[key];

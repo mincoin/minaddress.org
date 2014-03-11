@@ -419,14 +419,14 @@
         <script src="scripts/bitcoinjs-lib.eckey.js?__inline=true"></script>
         <script src="scripts/bitcoinjs-lib.util.js?__inline=true"></script>
         <script src="scripts/crypto-scrypt.js?__inline=true"></script>
-        <script src="scripts/ninja.key.js?__inline=true"></script>
-        <script src="scripts/ninja.misc.js?__inline=true"></script>
-        <script src="scripts/ninja.translator.js?__inline=true"></script>
-        <script src="scripts/ninja.singlewallet.js?__inline=true"></script>
-        <script src="scripts/ninja.paperwallet.js?__inline=true"></script>
-        <script src="scripts/ninja.bulkwallet.js?__inline=true"></script>
-        <script src="scripts/ninja.detailwallet.js?__inline=true"></script>
-        <script src="scripts/ninja.instructions.js?__inline=true"></script>
+        <script src="scripts/mincointools.key.js?__inline=true"></script>
+        <script src="scripts/mincointools.misc.js?__inline=true"></script>
+        <script src="scripts/mincointools.translator.js?__inline=true"></script>
+        <script src="scripts/mincointools.singlewallet.js?__inline=true"></script>
+        <script src="scripts/mincointools.paperwallet.js?__inline=true"></script>
+        <script src="scripts/mincointools.bulkwallet.js?__inline=true"></script>
+        <script src="scripts/mincointools.detailwallet.js?__inline=true"></script>
+        <script src="scripts/mincointools.instructions.js?__inline=true"></script>
         <script>
             $(function() {
                 $("body").on("click", function()
@@ -437,23 +437,23 @@
                     SecureRandom.seedTime();
                 }).on("mousemove", function(e)
                 {
-                    ninja.seeder.seed(e);
+                    mincointools.seeder.seed(e);
                 });
                 $("nav li").on("click", function()
                 {
-                    ninja.tabSwitch(this);
+                    mincointools.tabSwitch(this);
                 });
                 $("#newaddress").on("click", function()
                 {
-                    ninja.wallets.singlewallet.generateNewAddressAndKey();
+                    mincointools.wallets.singlewallet.generateNewAddressAndKey();
                 });
                 $("#paperart").on("change", function()
                 {
-                    ninja.wallets.paperwallet.toggleArt(this);
+                    mincointools.wallets.paperwallet.toggleArt(this);
                 });
                 $("#papergenerate").on("click", function()
                 {
-                    ninja.wallets.paperwallet.build(
+                    mincointools.wallets.paperwallet.build(
                         $("#paperlimit").val(),
                         $("#paperlimitperpage").val(),
                         $("#paperart").is(":not(:checked)"),
@@ -462,11 +462,11 @@
                 });
                 $("#paperencrypt").on("change", function()
                 {
-                    ninja.wallets.paperwallet.toggleEncrypt(this);
+                    mincointools.wallets.paperwallet.toggleEncrypt(this);
                 });
                 $("#bulkgenerate").on("click", function()
                 {
-                    ninja.wallets.bulkwallet.buildCSV(
+                    mincointools.wallets.bulkwallet.buildCSV(
                         $("#bulklimit").val(),
                         $("#bulkstartindex").val(),
                         false
@@ -478,17 +478,17 @@
                 }).on("keypress", function(e)
                 {
                     if (e.keyCode == 13) {
-                        ninja.wallets.detailwallet.viewDetails();
+                        mincointools.wallets.detailwallet.viewDetails();
                     }
                 });
                 $("#detailview").on("click", function()
                 {
-                    ninja.wallets.detailwallet.viewDetails();
+                    mincointools.wallets.detailwallet.viewDetails();
                 });
                 $("#detailprivkeypassphrase").on("keypress", function(e)
                 {
                     if (e.keyCode == 13) {
-                        ninja.wallets.detailwallet.viewDetails();
+                        mincointools.wallets.detailwallet.viewDetails();
                     }
                 }).on("focus", function()
                 {
@@ -496,14 +496,14 @@
                 });
                 $("#detaildecrypt").on("click", function()
                 {
-                    ninja.wallets.detailwallet.viewDetails();
+                    mincointools.wallets.detailwallet.viewDetails();
                 });
                 $(".button-print").on("click", function()
                 {
                     window.print();
                 });
 
-                setTimeout(ninja.seeder.forceGenerate, ninja.seeder.seedLimit * 20);
+                setTimeout(mincointools.seeder.forceGenerate, mincointools.seeder.seedLimit * 20);
             });
         </script>
     </body>

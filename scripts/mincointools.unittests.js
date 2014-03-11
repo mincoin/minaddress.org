@@ -55,7 +55,7 @@
 		},
 
 		synchronousTests: {
-			//ninja.publicKey tests
+			//mincointools.publicKey tests
 			testIsPublicKeyHexFormat: function () {
 				var key = "0478982F40FA0C0B7A55717583AFC99A4EDFD301A2729DC59B0B8EB9E18692BCB521F054FAD982AF4CC1933AFD1F1B563EA779A6AA6CCE36A30B947DD653E63E44";
 				var bool = ninja.publicKey.isPublicKeyHexFormat(key);
@@ -593,4 +593,4 @@
 			}
 		}
 	};
-})(ninja);
+})(mincointools);

@@ -1,7 +1,7 @@
-ninja.wallets.singlewallet = {
+mincointools.wallets.singlewallet = {
 	open: function () {
 		if (document.getElementById("btcaddress").innerHTML == "") {
-			ninja.wallets.singlewallet.generateNewAddressAndKey();
+			mincointools.wallets.singlewallet.generateNewAddressAndKey();
 		}
 		document.getElementById("singlearea").style.display = "block";
 	},
@@ -22,7 +22,7 @@ ninja.wallets.singlewallet = {
 				"qrcode_public": bitcoinAddress,
 				"qrcode_private": privateKeyWif
 			};
-			ninja.qrCode.showQrCode(keyValuePair, 4);
+			mincointools.qrCode.showQrCode(keyValuePair, 4);
 
             document.getElementById("qrcode_public").getElementsByTagName("canvas")[0].className = "single-qr-code";
             document.getElementById("qrcode_private").getElementsByTagName("canvas")[0].className = "single-qr-code";

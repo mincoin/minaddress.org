@@ -1,4 +1,4 @@
-ninja.wallets.instructions = {
+mincointools.wallets.instructions = {
     open: function () {
         document.getElementById("instructionsarea").style.display = "block";
     },

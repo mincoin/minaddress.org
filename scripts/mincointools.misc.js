@@ -1,4 +1,4 @@
-ninja.seeder = {
+mincointools.seeder = {
 	// number of mouse movements to wait for
 	seedLimit: (function () {
 		var num = Crypto.util.randomBytes(12)[11];
@@ -16,10 +16,10 @@ ninja.seeder = {
 		// seed mouse position X and Y
 		if (evt) SecureRandom.seedInt((evt.clientX * evt.clientY));
 
-		ninja.seeder.seedCount++;
+		mincointools.seeder.seedCount++;
 		// seeding is over now we generate and display the address
-		if (ninja.seeder.seedCount == ninja.seeder.seedLimit) {
-			ninja.wallets.singlewallet.open();
+		if (mincointools.seeder.seedCount == mincointools.seeder.seedLimit) {
+			mincointools.wallets.singlewallet.open();
 			// UI
 			document.getElementById("generate").style.display = "none";
 			document.getElementById("menu").style.visibility = "visible";
@@ -30,15 +30,15 @@ ninja.seeder = {
 	// we will force the generation after a random period of time.
 	forceGenerate: function () {
 		// if the mouse has not moved enough
-		if (ninja.seeder.seedCount < ninja.seeder.seedLimit) {
+		if (mincointools.seeder.seedCount < mincointools.seeder.seedLimit) {
 			SecureRandom.seedTime();
-			ninja.seeder.seedCount = ninja.seeder.seedLimit - 1;
-			ninja.seeder.seed();
+			mincointools.seeder.seedCount = mincointools.seeder.seedLimit - 1;
+			mincointools.seeder.seed();
 		}
 	}
 };
 
-ninja.qrCode = {
+mincointools.qrCode = {
 	// determine which type number is big enough for the input text length
 	getTypeNumber: function (text) {
 		var lengthCalculation = text.length * 8 + 12; // length as calculated by the QRCode
@@ -58,7 +58,7 @@ ninja.qrCode = {
 	createCanvas: function (text, sizeMultiplier) {
 		sizeMultiplier = (sizeMultiplier == undefined) ? 4 : sizeMultiplier; // default 2
 		// create the qrcode itself
-		var typeNumber = ninja.qrCode.getTypeNumber(text);
+		var typeNumber = mincointools.qrCode.getTypeNumber(text);
 		var qrcode = new QRCode(typeNumber, QRCode.ErrorCorrectLevel.H);
 		qrcode.addData(text);
 		qrcode.make();
@@ -89,7 +89,7 @@ ninja.qrCode = {
 
 	// generate a QRCode and return it's representation as an Html table 
 	createTableHtml: function (text) {
-		var typeNumber = ninja.qrCode.getTypeNumber(text);
+		var typeNumber = mincointools.qrCode.getTypeNumber(text);
 		var qr = new QRCode(typeNumber, QRCode.ErrorCorrectLevel.H);
 		qr.addData(text);
 		qr.make();
@@ -120,30 +120,30 @@ ninja.qrCode = {
 			try {
 				if (document.getElementById(key)) {
 					document.getElementById(key).innerHTML = "";
-					document.getElementById(key).appendChild(ninja.qrCode.createCanvas(value, sizeMultiplier));
+					document.getElementById(key).appendChild(mincointools.qrCode.createCanvas(value, sizeMultiplier));
 				}
 			}
 			catch (e) {
 				// for browsers that do not support canvas (IE8)
-				document.getElementById(key).innerHTML = ninja.qrCode.createTableHtml(value);
+				document.getElementById(key).innerHTML = mincointools.qrCode.createTableHtml(value);
 			}
 		}
 	}
 };
 
-ninja.tabSwitch = function (walletTab) {
+mincointools.tabSwitch = function (walletTab) {
 	if (walletTab.className.indexOf("selected") == -1) {
 		// unselect all tabs
-		for (var wType in ninja.wallets) {
+		for (var wType in mincointools.wallets) {
 			document.getElementById(wType).className = "tab";
-			ninja.wallets[wType].close();
+			mincointools.wallets[wType].close();
 		}
 		walletTab.className += " selected";
-		ninja.wallets[walletTab.getAttribute("id")].open();
+		mincointools.wallets[walletTab.getAttribute("id")].open();
 	}
 };
 
-ninja.getQueryString = function () {
+mincointools.getQueryString = function () {
 	var result = {}, queryString = location.search.substring(1), re = /([^&=]+)=([^&]*)/g, m;
 	while (m = re.exec(queryString)) {
 		result[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
@@ -152,7 +152,7 @@ ninja.getQueryString = function () {
 };
 
 // use when passing an Array of Functions
-ninja.runSerialized = function (functions, onComplete) {
+mincointools.runSerialized = function (functions, onComplete) {
 	onComplete = onComplete || function () { };
 
 	if (functions.length === 0) onComplete();
@@ -160,27 +160,27 @@ ninja.runSerialized = function (functions, onComplete) {
 		// run the first function, and make it call this
 		// function when finished with the rest of the list
 		var f = functions.shift();
-		f(function () { ninja.runSerialized(functions, onComplete); });
+		f(function () { mincointools.runSerialized(functions, onComplete); });
 	}
 };
 
-ninja.forSerialized = function (initial, max, whatToDo, onComplete) {
+mincointools.forSerialized = function (initial, max, whatToDo, onComplete) {
 	onComplete = onComplete || function () { };
 
 	if (initial === max) { onComplete(); }
 	else {
 		// same idea as runSerialized
-		whatToDo(initial, function () { ninja.forSerialized(++initial, max, whatToDo, onComplete); });
+		whatToDo(initial, function () { mincointools.forSerialized(++initial, max, whatToDo, onComplete); });
 	}
 };
 
 // use when passing an Object (dictionary) of Functions
-ninja.foreachSerialized = function (collection, whatToDo, onComplete) {
+mincointools.foreachSerialized = function (collection, whatToDo, onComplete) {
 	var keys = [];
 	for (var name in collection) {
 		keys.push(name);
 	}
-	ninja.forSerialized(0, keys.length, function (i, callback) {
+	mincointools.forSerialized(0, keys.length, function (i, callback) {
 		whatToDo(keys[i], callback);
 	}, onComplete);
 };

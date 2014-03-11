@@ -1,6 +1,6 @@
-var ninja = { wallets: {} };
+var mincointools = { wallets: {} };
 
-ninja.privateKey = {
+mincointools.privateKey = {
 	isPrivateKey: function (key) {
 		return (
 					Bitcoin.ECKey.isWalletImportFormat(key) ||
@@ -44,18 +44,18 @@ ninja.privateKey = {
 		try {
 			hex = Bitcoin.Base58.decode(base58Encrypted);
 		} catch (e) {
-			callback(new Error(ninja.translator.get("detailalertnotvalidprivatekey")));
+			callback(new Error(mincointools.translator.get("detailalertnotvalidprivatekey")));
 			return;
 		}
 
 		// 43 bytes: 2 bytes prefix, 37 bytes payload, 4 bytes checksum
 		if (hex.length != 43) {
-			callback(new Error(ninja.translator.get("detailalertnotvalidprivatekey")));
+			callback(new Error(mincointools.translator.get("detailalertnotvalidprivatekey")));
 			return;
 		}
 		// first byte is always 0x01 
 		else if (hex[0] != 0x01) {
-			callback(new Error(ninja.translator.get("detailalertnotvalidprivatekey")));
+			callback(new Error(mincointools.translator.get("detailalertnotvalidprivatekey")));
 			return;
 		}
 
@@ -63,7 +63,7 @@ ninja.privateKey = {
 		hex = hex.slice(0, -4);
 		var checksum = Bitcoin.Util.dsha256(hex);
 		if (checksum[0] != expChecksum[0] || checksum[1] != expChecksum[1] || checksum[2] != expChecksum[2] || checksum[3] != expChecksum[3]) {
-			callback(new Error(ninja.translator.get("detailalertnotvalidprivatekey")));
+			callback(new Error(mincointools.translator.get("detailalertnotvalidprivatekey")));
 			return;
 		}
 
@@ -78,7 +78,7 @@ ninja.privateKey = {
 			}
 			// key should NOT use compression
 			else if (hex[2] != 0xc0) {
-				callback(new Error(ninja.translator.get("detailalertnotvalidprivatekey")));
+				callback(new Error(mincointools.translator.get("detailalertnotvalidprivatekey")));
 				return;
 			}
 		}
@@ -88,12 +88,12 @@ ninja.privateKey = {
 			isCompPoint = (hex[2] & 0x20) != 0;
 			hasLotSeq = (hex[2] & 0x04) != 0;
 			if ((hex[2] & 0x24) != hex[2]) {
-				callback(new Error(ninja.translator.get("detailalertnotvalidprivatekey")));
+				callback(new Error(mincointools.translator.get("detailalertnotvalidprivatekey")));
 				return;
 			}
 		}
 		else {
-			callback(new Error(ninja.translator.get("detailalertnotvalidprivatekey")));
+			callback(new Error(mincointools.translator.get("detailalertnotvalidprivatekey")));
 			return;
 		}
 
@@ -106,7 +106,7 @@ ninja.privateKey = {
 			checksum = Bitcoin.Util.dsha256(base58AddrText); // checksum using closure
 
 			if (checksum[0] != hex[3] || checksum[1] != hex[4] || checksum[2] != hex[5] || checksum[3] != hex[6]) {
-				callback(new Error(ninja.translator.get("bip38alertincorrectpassphrase"))); // callback using closure
+				callback(new Error(mincointools.translator.get("bip38alertincorrectpassphrase"))); // callback using closure
 				return;
 			}
 			callback(tmpkey.getBitcoinPrivateKeyByteArray()); // callback using closure
@@ -259,7 +259,7 @@ ninja.privateKey = {
 		// address using either compressed or uncompressed public key methodology (specify which methodology is used
 		// inside flagbyte). This is the generated Bitcoin address, call it generatedaddress.
 		var ec = EllipticCurve.getSECCurveByName("secp256k1").getCurve();
-		var generatedPoint = ec.decodePointHex(ninja.publicKey.getHexFromByteArray(passpoint));
+		var generatedPoint = ec.decodePointHex(mincointools.publicKey.getHexFromByteArray(passpoint));
 		var generatedBytes = generatedPoint.multiply(BigInteger.fromByteArrayUnsigned(factorB)).getEncoded(compressed);
 		var generatedAddress = (new Bitcoin.Address(Bitcoin.Util.sha256ripe160(generatedBytes))).toString();
 
@@ -292,10 +292,10 @@ ninja.privateKey = {
 	}
 };
 
-ninja.publicKey = {
+mincointools.publicKey = {
 	isPublicKeyHexFormat: function (key) {
 		key = key.toString();
-		return ninja.publicKey.isUncompressedPublicKeyHexFormat(key) || ninja.publicKey.isCompressedPublicKeyHexFormat(key);
+		return mincointools.publicKey.isUncompressedPublicKeyHexFormat(key) || mincointools.publicKey.isCompressedPublicKeyHexFormat(key);
 	},
 	// 130 characters [0-9A-F] starts with 04
 	isUncompressedPublicKeyHexFormat: function (key) {
@@ -344,7 +344,7 @@ ninja.publicKey = {
 		var ecparams = EllipticCurve.getSECCurveByName("secp256k1");
 		var ecPoint = ecparams.getCurve().decodePointHex(pubKeyHexComp);
 		var pubByteArray = ecPoint.getEncoded(0);
-		var pubHexUncompressed = ninja.publicKey.getHexFromByteArray(pubByteArray);
+		var pubHexUncompressed = mincointools.publicKey.getHexFromByteArray(pubByteArray);
 		return pubHexUncompressed;
 	}
 };
