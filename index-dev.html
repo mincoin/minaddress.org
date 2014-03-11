@@ -177,15 +177,6 @@
                                 />
                             </span>
                             <span>
-                                <label id="bulklabelcompressed">
-                                    Compressed addresses?
-                                </label>
-                                <input
-                                    type="checkbox"
-                                    id="bulkcompressed"
-                                />
-                            </span>
-                            <span>
                                 <input
                                     type="button"
                                     id="bulkgenerate"
@@ -208,7 +199,7 @@
                             Comma Separated Values:
                         </span>
                         <span class="format" id="bulklabelformat">
-                            Index,Address,Private Key (WIF)
+                            Index, Address, Private Key (WIF)
                         </span>
                         <textarea rows="20" cols="88" id="bulktextarea"></textarea>
                     </div>
@@ -463,10 +454,10 @@
                 $("#papergenerate").on("click", function()
                 {
                     ninja.wallets.paperwallet.build(
-                        document.getElementById('paperlimit').value * 1,
-                        document.getElementById('paperlimitperpage').value * 1,
-                        !document.getElementById('paperart').checked,
-                        document.getElementById('paperpassphrase').value
+                        $("#paperlimit").val(),
+                        $("#paperlimitperpage").val(),
+                        $("#paperart").is(":not(:checked)"),
+                        $("#paperpassphrase").val()
                     );
                 });
                 $("#paperencrypt").on("change", function()
@@ -476,9 +467,9 @@
                 $("#bulkgenerate").on("click", function()
                 {
                     ninja.wallets.bulkwallet.buildCSV(
-                        document.getElementById('bulklimit').value * 1,
-                        document.getElementById('bulkstartindex').value * 1,
-                        document.getElementById('bulkcompressed').checked
+                        $("#bulklimit").val(),
+                        $("#bulkstartindex").val(),
+                        false
                     );
                 });
                 $("#detailprivkey").on("focus", function()
