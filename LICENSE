@@ -6,8 +6,8 @@ Donation Address: 1NiNja1bUmhSoTXozBRBEtR8LeF9TGbZBN
 
 Notice of Copyrights and Licenses:
 ***********************************
-The bitaddress.org project, software and embedded resources are copyright bitaddress.org (pointbiz).
-The bitaddress.org name and logo are not part of the open source license.
+The minaddress.org project, software and embedded resources are copyright minaddress.org (mincoin).
+The minaddress.org name and logo are not part of the open source license.
 
 Portions of the all-in-one HTML document contain JavaScript codes that are the copyrights of others.
 The individual copyrights are included throughout the document along with their licenses.
@@ -25,8 +25,8 @@ window.QRCode			MIT License
 window.Bitcoin			MIT License
 window.Crypto_scrypt		MIT License
 
-The bitaddress.org software is available under The MIT License (MIT)
-Copyright (c) 2011-2013 bitaddress.org (pointbiz)
+The minaddress.org software is available under The MIT License (MIT)
+Copyright (c) 2019 minaddress.org (mincoin)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
 associated documentation files (the "Software"), to deal in the Software without restriction, including
@@ -43,4 +43,4 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
 WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-GitHub Repository: https://github.com/pointbiz/bitaddress.org
+GitHub Repository: https://github.com/mincoin/paper-wallet
