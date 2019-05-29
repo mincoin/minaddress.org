@@ -1,6 +1,6 @@
 MinCoin Wallet Generator
 
-The wallet.mincoin.io project provides an all-in-one HTML document with embedded
+The minaddress.org project provides an all-in-one HTML document with embedded
 JavaScript/Css/Images. The JavaScript is readable not minified and contains no
 XMLHttpRequest's (no AJAX). The benefit of this technique is you can load the 
 JavaScript locally and trust that the JavaScript did not change after being 
@@ -36,7 +36,7 @@ window.BigInteger		BSD License
 window.QRCode			MIT License
 window.Bitcoin			MIT License
 
-The wallet.mincoin.io software is available under The MIT License (MIT)
+The minaddress.org software is available under The MIT License (MIT)
 Copyright (c) 2014 wallet.mincoin.io
 Copyright (c) 2012-2013 liteaddress.org
 Copyright (c) 2011-2013 bitaddress.org
