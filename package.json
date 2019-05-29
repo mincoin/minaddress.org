@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/mincointools/paper-wallet.git"
+    "url": "git://github.com/mincoin/paper-wallet.git"
   },
   "keywords": [
     "mincoin address wallet generator"
@@ -26,6 +26,6 @@
   "readmeFilename": "README",
   "gitHead": "9ad2aea1fbc4919f6631606ad1ff5256aed64f8a",
   "bugs": {
-    "url": "https://github.com/mincointools/paper-wallet/issues"
+    "url": "https://github.com/mincoin/paper-wallet/issues"
   }
 }
